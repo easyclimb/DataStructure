@@ -1,0 +1,40 @@
+#include <iostream>
+
+using namespace std;
+
+#define n 4
+
+void floyd(int graph[n][n]) {
+    int minDis[n][n];
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            minDis[i][j] = graph[i][j];
+        }
+    }
+    for(int k = 0; k < n; k++) {
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                if(minDis[i][j] == 0 || minDis[i][k] + minDis[k][j] < minDis[i][j])
+                    minDis[i][j] = minDis[i][k] + minDis[k][j];
+            }
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            cout << minDis[i][j] << ' ';
+        }
+        cout << endl;
+    }
+}
+
+int main() 
+{
+    int graph[n][n] = { {0, 5, 0, 10},
+                        {0, 0, 3, 0},
+                        {0, 0, 0, 1},
+                        {0, 0, 0, 0}
+                      };
+    floyd(graph);
+    getchar();
+    return 0;
+}
