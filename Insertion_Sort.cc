@@ -1,12 +1,28 @@
 class Solution {
 public:
-    void insertionSort(int arr[], int n) {
+    void insertionSort1(int arr[], int n) {
         int key ,
         for(int i = 1; i < n; i++) {
-            key = arr[i];
-            int j = i - 1;
-            while(j >= 0 && arr[j] >= key) {
-                arr[j + 1] = arr[j];
+            if(arr[i] >= arr[i-1]) continue;
+            else {
+                key = arr[i];
+                int j = i - 1;
+                while(j >= 0 && arr[j] >= key) {
+                    arr[j + 1] = arr[j];
+                    j--;
+                }
+                arr[j+1] = key;
+            }
+        }
+    }
+    
+    void insertionSort2(int arr[], int n) {
+        int key;
+        for(int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i-1;
+            while(j >= 0 && arr[j] >= key) {  //if arr[i] >= arr[i-1], then won't get in while
+                arr[j+1] = arr[j];
                 j--;
             }
             arr[j+1] = key;
