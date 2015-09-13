@@ -24,7 +24,19 @@ public:
         ListNode dummy(INT_MIN), *cur = &dummy;
         dummy.next = head;
         while(cur->next) {
-            if(
+            if(cur->val <= cur->next->val)
+                cur = cur->next;
+            else insert(&dummy, cur, cur->next);
         }
+        return dummy.next;
+    }
+    
+    void insert(ListNode* head, ListNode* tail, ListNode* node) { 
+        ListNode *cur = head;
+        while(node->val > cur->next->val)
+            cur = cur->next;
+        tail->next = node->next;  //node插入cur和cur->next之间，cur指向的是需要插入的位置的前置位置
+        node->next = cur->next;
+        cur->next = node;
     }
 };
