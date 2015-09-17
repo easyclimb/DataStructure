@@ -114,10 +114,10 @@ public:
         PostorderDFS(root->right, ret);
         ret.push_back(root->val);
     }
-}
+};
 
 void show(vector<int>& vec) {
-    for(auot v : vec)
+    for(auto v : vec)
         cout << v << " ";
     cout << endl;
 }
@@ -145,4 +145,5 @@ int main()
     show(ret);
     ret = traversal.Postorder(&n1);
     show(ret);
+    return 0;
 }
