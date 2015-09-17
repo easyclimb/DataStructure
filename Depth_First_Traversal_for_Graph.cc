@@ -9,6 +9,7 @@ public:
     Graph(int V);   //constructor
     void addEdge(int v, int w);   //add an adge to graph
     void DFS(int v);    //DFS traversal for the vertices reachable from v
+    void DFS();     //print DFS traversal for the complete graph
 private:
     int V;   //No. of vertices
     vector<int> *adj;   //a vector containing adjacent lists
@@ -39,6 +40,15 @@ void Graph::DFS(int v) {
     DFSRe(v, visited);
 }
 
+void Graph::DFS() {
+    bool *visited = new bool[V];
+    for(int i = 0; i < V; i++)
+        visited[i] = false;
+    for(int i = 0; i < V; i++)
+        if(!visited[i])
+            DFSRe(i, visited);
+}
+
 int main() 
 {
     Graph g(4);
@@ -46,6 +56,6 @@ int main()
     g.addEdge(1, 2);
     g.addEdge(2, 0);
     g.addEdge(2, 3);
-    g.DFS(0);
+    g.DFS();
     return 0;
 }
