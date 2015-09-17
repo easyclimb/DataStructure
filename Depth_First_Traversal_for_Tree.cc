@@ -143,7 +143,7 @@ int main()
     show(ret);
     ret = traversal.Postorder(&n1);
     show(ret);
-    ret = traversal.Postorder(&n1);
+    ret = traversal.PostorderRe(&n1);
     show(ret);
     return 0;
 }
