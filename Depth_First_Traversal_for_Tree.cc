@@ -67,7 +67,7 @@ public:
                 if(node->right && last != node->right)
                     cur = node->right;
                 else {
-                    ret.push_back(cur->val);
+                    ret.push_back(node->val);
                     stk.pop();
                     last = node;
                 }
