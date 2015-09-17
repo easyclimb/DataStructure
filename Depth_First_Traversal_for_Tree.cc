@@ -26,7 +26,7 @@ public:
         while(cur || !stk.empty()) {
             if(cur) {
                 stk.push(cur);
-                cur = cur->next;
+                cur = cur->left;
             }
             else {
                 TreeNode* node = stk.top();
@@ -47,8 +47,8 @@ public:
             stk.pop();
             if(!node) continue;
             ret.push_back(node->val);
-            if(node->right) stk.push_back(node->right);
-            if(node->left) stk.push_back(node->left);
+            if(node->right) stk.push(node->right);
+            if(node->left) stk.push(node->left);
         }
         return ret;
     }
@@ -84,9 +84,9 @@ public:
     
     void InorderDFS(TreeNode* root, vector<int>& ret) {
         if(!root) return;
-        InorderDFS(root->left);
+        InorderDFS(root->left, ret);
         ret.push_back(root->val);
-        InorderDFS(root->right);
+        InorderDFS(root->right, ret);
     }
     
     vector<int> PreorderRe(TreeNode* root) {
