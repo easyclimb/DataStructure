@@ -59,3 +59,6 @@ int main()
     g.DFS();
     return 0;
 }
+
+//Time Complexity : O(V + E), V :  Number of Vertices, E : Number of Edges
+//Space Complexity : O(V) --> visited boolean array
