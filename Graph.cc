@@ -68,6 +68,7 @@ void Graph::topologicalSortRe(int v, bool visited[], stack<int>& stk) {
 	stk.push(v);
 }
 
+//DFS
 vector<int> Graph::topologicalSort() {
 	bool *visited = new bool[V];
 	for (int i = 0; i < V; i++)
@@ -84,6 +85,11 @@ vector<int> Graph::topologicalSort() {
 	}
 	return ret;
 };
+
+//BFS
+vector<int> Graph::topologicalSort2() {
+
+}
 
 void show(vector<int>& vec) {
 	for (auto v : vec)
