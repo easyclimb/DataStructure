@@ -16,7 +16,7 @@ private:
     void DFSRe(int v, bool visited[]);   //function usded by DFS
 };
 
-Graph::Graph(int v) {
+Graph::Graph(int V) {
     this->V = V;
     adj = new vector<int>[V];
 }
