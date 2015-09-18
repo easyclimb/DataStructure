@@ -88,7 +88,29 @@ vector<int> Graph::topologicalSort() {
 
 //BFS
 vector<int> Graph::topologicalSort2() {
-
+	vector<bool> indegree(V);
+	for(auto vec : adj)
+		for(auto v : vec)
+			indegree[v]++;
+	queue<int> que;
+	for(int i = 0; i < V; i++)
+		if(indegree[i] == 0)
+			que.push(i);
+	vector<int> ret;
+	int count = 0;
+	while(!que.empty()) {
+		int i = que.front();
+		que.pop();
+		ret.push_back(i);
+		count++;
+		for(auto e : adj[i]) {
+			indegree[e]--;
+			if(indegree[e] == 0)
+				que.push(e);
+		}
+	}
+	if(count == V) return ret;
+	return {};
 }
 
 void show(vector<int>& vec) {
@@ -108,6 +130,8 @@ int main()
 	g.addEdge(3, 1);
 	vector<int> ret;
 	ret = g.topologicalSort();
+	show(ret);
+	ret = g.topologicalSort2();
 	show(ret);
 	getchar();
 	return 0;
