@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ public:
 	void DFS(int v);    //DFS traversal for the vertices reachable from v
 	void DFS();     //print DFS traversal for the complete graph
 	vector<int> topologicalSort();
+	vector<int> topologicalSort2();
 private:
 	int V;   //No. of vertices
 	vector<int> *adj;   //a vector containing adjacent lists
@@ -88,29 +90,29 @@ vector<int> Graph::topologicalSort() {
 
 //BFS
 vector<int> Graph::topologicalSort2() {
-	vector<bool> indegree(V);
-	for(auto vec : adj)
-		for(auto v : vec)
+	vector<int> indegree(V);
+	for (int i = 0; i < V; i++)
+		for (auto v : adj[i])
 			indegree[v]++;
 	queue<int> que;
-	for(int i = 0; i < V; i++)
-		if(indegree[i] == 0)
+	for (int i = 0; i < V; i++)
+		if (indegree[i] == 0)
 			que.push(i);
 	vector<int> ret;
 	int count = 0;
-	while(!que.empty()) {
+	while (!que.empty()) {
 		int i = que.front();
 		que.pop();
 		ret.push_back(i);
 		count++;
-		for(auto e : adj[i]) {
+		for (auto e : adj[i]) {
 			indegree[e]--;
-			if(indegree[e] == 0)
+			if (indegree[e] == 0)
 				que.push(e);
 		}
 	}
-	if(count == V) return ret;
-	return {};
+	if (count == V) return ret;
+	return{};
 }
 
 void show(vector<int>& vec) {
@@ -136,4 +138,3 @@ int main()
 	getchar();
 	return 0;
 }
-
