@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -24,6 +25,17 @@ int findIndex(string s, string p) {
 
 
 //Solution 2 : KMP
+void get_next(string& p, vector<int>& next) {
+    int n = next.size(), j = 0, k = -1;
+    next[0] = -1;
+    while(j < n - 1) {
+        if(k == -1 || p[j] == p[k])
+            next[j++] = k++;
+        else
+            k = next[k];
+    }
+}
+
 int findIndex2(string s, string p) {
     int i = 0, j = 0;
     int len1 = s.size(), len2 = p.size();
@@ -39,17 +51,6 @@ int findIndex2(string s, string p) {
     }
     if(j == len2) return i - j;
     return -1;
-}
-
-void get_next(string& p, vector<int>& next) {
-    int n = next.size(), j = 0, k = -1;
-    next[0] = -1;
-    while(k < n - 1) {
-        if(k == -1 || p[j] == p[k])
-            next[j++] = k++;
-        else
-            k = next[k];
-    }
 }
 
 int main()
