@@ -7,7 +7,7 @@ using namespace std;
 //Time: O(m*n)
 int findIndex(string s, string p) {
     int len1 = s.size(), len2 = p.size();
-    int i = 0; j = 0;
+    int i = 0, j = 0;
     while(i < len1 && j < len2) {
         if(s[i] == p[j]) {
             i++;
